@@ -5,11 +5,13 @@ namespace BombGame
     class Cell
     {
         bool hasBomb;
+        bool visibleBomb;
         Player player;
 
         public Cell()
         {
             hasBomb = false;
+            visibleBomb = false;
             player = null;
         }
 
@@ -26,6 +28,16 @@ namespace BombGame
         public bool HasBomb()
         {
             return hasBomb;
+        }
+
+        public void ShowBomb()
+        {
+            visibleBomb = true;
+        }
+
+        public void HideBomb()
+        {
+            visibleBomb = false;
         }
 
         public void SetPlayer(Player p)
