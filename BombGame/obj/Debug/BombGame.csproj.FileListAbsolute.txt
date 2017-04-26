@@ -1,0 +1,6 @@
+c:\users\rachk\documents\visual studio 2015\Projects\BombGame\BombGame\bin\Debug\BombGame.exe.config
+c:\users\rachk\documents\visual studio 2015\Projects\BombGame\BombGame\bin\Debug\BombGame.exe
+c:\users\rachk\documents\visual studio 2015\Projects\BombGame\BombGame\bin\Debug\BombGame.pdb
+c:\users\rachk\documents\visual studio 2015\Projects\BombGame\BombGame\obj\Debug\BombGame.csprojResolveAssemblyReference.cache
+c:\users\rachk\documents\visual studio 2015\Projects\BombGame\BombGame\obj\Debug\BombGame.exe
+c:\users\rachk\documents\visual studio 2015\Projects\BombGame\BombGame\obj\Debug\BombGame.pdb
