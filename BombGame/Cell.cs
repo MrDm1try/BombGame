@@ -6,6 +6,8 @@ namespace BombGame
     {
         bool hasBomb;
         bool visibleBomb;
+        int row;
+        int column;
         Player player;
 
         public Cell()
@@ -13,6 +15,16 @@ namespace BombGame
             hasBomb = false;
             visibleBomb = false;
             player = null;
+        }
+
+        public int GetRow()
+        {
+            return row;
+        }
+
+        public int GetColumn()
+        {
+            return column;
         }
 
         public void PutBomb()
@@ -34,6 +46,7 @@ namespace BombGame
         {
             return visibleBomb;
         }
+
         public void ShowBomb()
         {
             visibleBomb = true;

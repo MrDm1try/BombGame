@@ -24,9 +24,9 @@ namespace BombGame
                 g.Print();
                 do
                 {
-                Console.Write("Player 2, move: ");
-                mode = Convert.ToInt32(Console.ReadLine());
-                p2_status = g.Move(players[1], mode); 
+                    Console.Write("Player 2, move: ");
+                    mode = Convert.ToInt32(Console.ReadLine());
+                    p2_status = g.Move(players[1], mode); 
                 }
                 while (p2_status == false);
                 g.Print();
