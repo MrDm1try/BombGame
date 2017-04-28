@@ -22,6 +22,13 @@ namespace BombGame
             visited = new List<int[]>();
         }
 
+        public void SetGrid(Cell[] cells)
+        {
+            foreach (Cell c in cells)
+            {
+                grid[c.GetRow(), c.GetColumn()] = c;
+            }
+        }
         public void SetBombs(int bombsPerRow)
         {
             Random r = new Random();
