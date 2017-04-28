@@ -140,7 +140,7 @@ namespace BombGame
             return new Player[] { player1, player2 };
         }
 
-        public void Move(Player player, int way)
+        public bool Move(Player player, int way)
         {
             int r = player.GetRow();
             int c = player.GetColumn();
@@ -150,6 +150,15 @@ namespace BombGame
                 new int[,] { { -1, -1 }, { -1, 0 }, { 0, 1 }, { 1, 0 }, { 1, -1 }, { 0, -1 } } ;
             int rn = r + pattern[way - 1, 0];
             int cn = c + pattern[way - 1, 1];
+
+            if ((rn < 0) || (cn < 0) ||
+                (rn >= grid.GetLength(0)) || (cn >= grid.GetLength(1)) ||
+                (rn % 2 == 0 && cn == grid.GetLength(1) - 1) ||
+                grid[rn, cn].HasPlayer() ||
+                (grid[rn, cn].HasBomb() && grid[rn, cn].BombVisible()))
+            {
+                return false;
+            }
             if (grid[rn, cn].HasBomb())
             {
                 grid[rn, cn].ShowBomb();
@@ -163,6 +172,7 @@ namespace BombGame
                 grid[rn, cn].SetPlayer(player);
                 player.Move(rn, cn);
             }
+            return true;
         }
 
         public void Print()

@@ -30,6 +30,10 @@ namespace BombGame
             return hasBomb;
         }
 
+        public bool BombVisible()
+        {
+            return visibleBomb;
+        }
         public void ShowBomb()
         {
             visibleBomb = true;
