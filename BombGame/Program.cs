@@ -6,13 +6,21 @@ namespace BombGame
     {
         static void Main(string[] args)
         {
+            GameGrid g = new GameGrid(5, 5);
+            g.SetBombs(2);
+            Player[] players = g.Start();
+            g.Print();
+            int mode;
             for (;;)
             {
-                GameGrid g = new GameGrid(21, 21);
-                g.SetBombs(10);
+                Console.Write("Player 1, move: ");
+                mode = Convert.ToInt32(Console.ReadLine());
+                g.Move(players[0], mode); 
                 g.Print();
-                Console.WriteLine();
-                Console.ReadKey();
+                Console.Write("Player 2, move: ");
+                mode = Convert.ToInt32(Console.ReadLine());
+                g.Move(players[1], mode); 
+                g.Print();
             }
             Console.ReadKey();
         }

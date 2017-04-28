@@ -8,6 +8,8 @@ namespace BombGame
     {
         Cell[,] grid;
         List<int[]> visited;
+        Player player1;
+        Player player2;
 
         public GameGrid(int rows, int columns)
         {
@@ -49,8 +51,8 @@ namespace BombGame
         {
             int[,] pattern =
                 row % 2 == 0 ?
-                new int[,] { { -1, 0 }, { 0, 1 }, { 1, 0 }, { 0, -1 }, { -1, 1 }, { 1, 1 } } :
-                new int[,] { { -1, 0 }, { 0, 1 }, { 1, 0 }, { 0, -1 }, { -1, -1 }, { 1, -1 } } ;
+                new int[,] { { -1, 0 }, { -1, 1 }, { 0, 1 }, { 1, 1 }, { 1, 0 }, { 0, -1 } } :
+                new int[,] { { -1, -1 }, { -1, 0 }, { 0, 1 }, { 1, 0 }, { 1, -1 }, { 0, -1 } } ;
             List<int[]> toReturn = new List<int[]>();
             int r, c;
             for (int i = 0; i < pattern.GetLength(0); i++)
@@ -129,8 +131,43 @@ namespace BombGame
             return bombsPositions;
         }
 
+        public Player[]  Start()
+        {
+            player1 = new Player(1, grid.GetLength(0) - 1, 0);
+            grid[grid.GetLength(0) - 1, 0].SetPlayer(player1);
+            player2 = new Player(2, 0, grid.GetLength(0) - 2);
+            grid[0, grid.GetLength(0) - 2].SetPlayer(player2);
+            return new Player[] { player1, player2 };
+        }
+
+        public void Move(Player player, int way)
+        {
+            int r = player.GetRow();
+            int c = player.GetColumn();
+            int[,] pattern =
+                r % 2 == 0 ?
+                new int[,] { { -1, 0 }, { -1, 1 }, { 0, 1 }, { 1, 1 }, { 1, 0 }, { 0, -1 } } :
+                new int[,] { { -1, -1 }, { -1, 0 }, { 0, 1 }, { 1, 0 }, { 1, -1 }, { 0, -1 } } ;
+            int rn = r + pattern[way - 1, 0];
+            int cn = c + pattern[way - 1, 1];
+            if (grid[rn, cn].HasBomb())
+            {
+                grid[rn, cn].ShowBomb();
+                grid[r, c].RemovePlayer();
+                player.ToStart();
+                grid[player.GetRow(), player.GetColumn()].SetPlayer(player);
+            }
+            else
+            {
+                grid[r, c].RemovePlayer();
+                grid[rn, cn].SetPlayer(player);
+                player.Move(rn, cn);
+            }
+        }
+
         public void Print()
         {
+            Console.WriteLine();
             for (int i = 0; i < grid.GetLength(0); i++)
             {
                 if (i % 2 == 0)

@@ -57,7 +57,9 @@ namespace BombGame
 
         public override String ToString()
         {
-            return hasBomb ? "@@" : "<>";
+            if (player != null)
+                return player.ToString();
+            return hasBomb && visibleBomb ? "@@" : "<>";
         }
     }
 }
